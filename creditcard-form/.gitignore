@@ -1,0 +1,6 @@
+#build files
+/public/
+
+#modules
+/node_modules/
+package-lock.json
