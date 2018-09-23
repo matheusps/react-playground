@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Card from './components/Card';
+import PaymentForm from './components/PaymentForm';
 
 class App extends Component {
 
@@ -7,6 +8,8 @@ class App extends Component {
         super(props);
 
         this.turnCard = this.turnCard.bind(this);
+        this.pay = this.pay.bind(this);
+
 
         this.state = {
             cardState: true
@@ -19,6 +22,11 @@ class App extends Component {
         })
     }
 
+    pay( e ) {
+        e.preventDefault();
+        alert('Payment done');
+    }
+
     render() {
         return (
             <div>
@@ -29,6 +37,9 @@ class App extends Component {
                     yyyy=""
                     cvc=""
                     isFrontFaced={ this.state.cardState }
+                />
+                <PaymentForm
+                    payFn={ this.pay }
                 />
                 <button onClick={this.turnCard}> Rotate Card </button>
             </div>
