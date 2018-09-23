@@ -1,9 +1,61 @@
-.custom-input {
-    border-radius: 14px;
-    background-color: #f0f0f0;
-    font-size: 20px;
-    font-weight: 500;
-    letter-spacing: 0.3px;
-    color: #959595;
-    border: none;
+$form-spacing: 1.2em;
+$universal-radius: 5px;
+$inputs-h:  50px;
+$inputs-w: 60%;
+
+.payment-form {
+    .payment-input {
+        margin-top: $form-spacing;
+        label {
+            display: block;
+        }
+
+        input {
+            margin-top: 5px;
+            width: $inputs-w;
+            height: $inputs-h;
+            font-size: 18px;
+            border-radius: $universal-radius;
+            border: solid 0.5px #b3b3b3;
+        }
+
+        select {
+            width: $inputs-w / 2.5;
+            height: $inputs-h;
+            font-size: 18px;
+            border-radius: $universal-radius;
+            border: solid 0.5px #b3b3b3;
+            &:last-child{
+                margin-left: $inputs-w - (($inputs-w / 2.5) * 2);
+            }
+        }
+    }
+
+    button {
+        margin-top: $form-spacing;
+        display: inline-block;
+        white-space: nowrap;
+        box-sizing: border-box;
+        cursor: pointer;
+        height: $inputs-h;
+        width: $inputs-w;
+        padding: 0 30px;
+        border-radius: $universal-radius;
+        border: 1px solid;
+        text-align: center;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 50px;
+        letter-spacing: .15rem;
+        text-transform: uppercase;
+        text-decoration: none;
+        color: #333;
+        background-color: #ccc;
+        border-color: #ccc;
+    }
+
+    button:hover,
+    button:focus {
+        background-color: #b3b3b3;
+    }
 }

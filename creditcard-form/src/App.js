@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import Card from './components/Card';
 import PaymentForm from './components/PaymentForm';
+import ProductList from './components/ProductList';
+
+import './App.scss';
 
 class App extends Component {
 
@@ -29,19 +32,25 @@ class App extends Component {
 
     render() {
         return (
-            <div>
-                <Card 
-                    number=""
-                    holder=""
-                    mm=""
-                    yyyy=""
-                    cvc=""
-                    isFrontFaced={ this.state.cardState }
-                />
-                <PaymentForm
-                    payFn={ this.pay }
-                />
-                <button onClick={this.turnCard}> Rotate Card </button>
+            <div className="App">
+                <section className="cart-area">
+                    <ProductList />
+                </section>
+                <section className="content">
+                    <Card 
+                        number=""
+                        holder=""
+                        mm=""
+                        yyyy=""
+                        cvc=""
+                        isFrontFaced={ this.state.cardState }
+                    />
+                    <PaymentForm
+                        payFn={ this.pay }
+                    />
+                    <button onClick={this.turnCard}> Rotate Card </button>
+                </section>
+                
             </div>
             
         );
