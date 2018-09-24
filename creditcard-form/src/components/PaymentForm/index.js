@@ -1,37 +1,45 @@
 import React from 'react';
 import './style.scss';
 
-const PaymentForm = ({ payFn }) => {
+const PaymentForm = ({ payFn, turnCardBack, turnCardFront, handleInputChange }) => {
 
     return (
-       
        <form className="payment-form" onSubmit={ payFn }>
+           
            <div className="payment-input">
                 <label>Credit Card Numbers</label>
-                <input type="text"/>                
+                <input name="number" type="text" onChange={ handleInputChange }/>                
            </div>
+           
            <div className="payment-input">
                 <label>Holder</label>
-                <input type="text" placeholder=''/>                
+                <input name="holder" type="text" onChange={ handleInputChange }/>                
            </div>
+           
            <div className="payment-input">
                 <label>Expiration</label>
-                <select>
-                    <option>Jan</option>
-                    <option>Feb</option>
+                
+                <select name="mm" onChange={ handleInputChange }>
+                    <option value="JAN">JAN</option>
+                    <option value="FEB">FEB</option>
                     <option>...</option>
                 </select>
-                <select>
-                    <option>2018</option>
-                    <option>2019</option>
+
+                <select name="yyyy" onChange={ handleInputChange }>
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
                     <option>...</option>
-                </select>               
+                </select>
+
            </div>
+           
            <div className="payment-input">
                 <label>CVC</label>
-                <input type="text" placeholder=''/>                
+                <input name="cvc" type="text" onChange={ handleInputChange } onClick={ turnCardBack } onBlur={ turnCardFront }/>                
            </div>
+
            <button> Pay Now </button>
+       
        </form>
     );
 };

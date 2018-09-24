@@ -10,24 +10,57 @@ class App extends Component {
     constructor(props) {
         super(props);
 
-        this.turnCard = this.turnCard.bind(this);
+        this.turnCardFront = this.turnCardFront.bind(this);
+        this.turnCardBack = this.turnCardBack.bind(this);
         this.pay = this.pay.bind(this);
-
+        this.handleInputChange = this.handleInputChange.bind(this);
 
         this.state = {
-            cardState: true
+            card: {
+                isFrontFaced: true,
+                number: '',
+                holder: '',
+                mm: '',
+                yyyy: '',
+                cvc: ''
+            }
         }
     }
 
-    turnCard() {
+    turnCardFront() {
         this.setState({
-            cardState: !this.state.cardState
+            card: {
+                ...this.state.card,
+                isFrontFaced: true
+            }
+        })
+    }
+
+    turnCardBack() {
+        this.setState({
+            card: {
+                ...this.state.card,
+                isFrontFaced: false
+            }
+        })
+    }
+
+    handleInputChange(e) {
+
+        const name = e.target.name;
+        const value = e.target.value;
+
+        this.setState({
+            card: {
+                ...this.state.card,
+                [name]: value
+            }
         })
     }
 
     pay( e ) {
         e.preventDefault();
-        alert('Payment done');
+        console.log(this.state.card);
     }
 
     render() {
@@ -38,17 +71,15 @@ class App extends Component {
                 </section>
                 <section className="content">
                     <Card 
-                        number=""
-                        holder=""
-                        mm=""
-                        yyyy=""
-                        cvc=""
-                        isFrontFaced={ this.state.cardState }
+                        { ...this.state.card }
                     />
                     <PaymentForm
                         payFn={ this.pay }
+                        handleInputChange={ this.handleInputChange }
+                        turnCardBack={ this.turnCardBack }
+                        turnCardFront={ this.turnCardFront }
+                        { ...this.state.card }
                     />
-                    <button onClick={this.turnCard}> Rotate Card </button>
                 </section>
                 
             </div>
