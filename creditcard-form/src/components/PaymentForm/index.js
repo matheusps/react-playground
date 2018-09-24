@@ -1,19 +1,28 @@
 import React from 'react';
+import MaskedInput from 'react-text-mask';
 import './style.scss';
 
 const PaymentForm = ({ payFn, turnCardBack, turnCardFront, handleInputChange }) => {
+
+    const maskCreditCard = [/\d/, /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/ ];
+    const maskCVC = [ /\d/, /\d/, /\d/ ];
 
     return (
        <form className="payment-form" onSubmit={ payFn }>
            
            <div className="payment-input">
                 <label>Credit Card Numbers</label>
-                <input name="number" type="text" onChange={ handleInputChange }/>                
+                <MaskedInput 
+                    mask={ maskCreditCard }
+                    name="number"
+                    type="text"
+                    onChange={ handleInputChange }
+                />                
            </div>
            
            <div className="payment-input">
                 <label>Holder</label>
-                <input name="holder" type="text" onChange={ handleInputChange }/>                
+                <input style={ { textTransform: 'uppercase' } } name="holder" type="text" onChange={ handleInputChange }/>                
            </div>
            
            <div className="payment-input">
@@ -35,7 +44,14 @@ const PaymentForm = ({ payFn, turnCardBack, turnCardFront, handleInputChange }) 
            
            <div className="payment-input">
                 <label>CVC</label>
-                <input name="cvc" type="text" onChange={ handleInputChange } onClick={ turnCardBack } onBlur={ turnCardFront }/>                
+                <MaskedInput
+                    mask={ maskCVC }
+                    name="cvc" 
+                    type="text" 
+                    onChange={ handleInputChange } 
+                    onClick={ turnCardBack } 
+                    onBlur={ turnCardFront }
+                />                
            </div>
 
            <button> Pay Now </button>
