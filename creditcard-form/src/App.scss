@@ -1,0 +1,17 @@
+.App {
+    display: flex;
+    height: 100vh;
+}
+
+.cart-area {
+    flex: 0 0 auto;
+    width: 30%;
+    background-color: #0C2543;
+    text-align: center;
+}
+
+.content {
+    flex: 1 1 auto;
+    overflow: auto;
+    padding: 1% 1% 1% 10%;
+}
